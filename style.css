@@ -69,7 +69,43 @@ button {
 
 .zombie.active {
 
-    bottom:20px;
+    bottom:15px;
+
+    animation:
+    zombiePop 0.3s;
+
+}
+
+
+@keyframes zombiePop {
+
+    from {
+
+        transform:
+        translateX(-50%)
+        scale(0.5);
+
+    }
+
+
+    to {
+
+        transform:
+        translateX(-50%)
+        scale(1);
+
+    }
+
+}
+
+.zombie.hit {
+
+    transform:
+    translateX(-50%)
+    rotate(45deg)
+    scale(0.8);
+
+    opacity:0.5;
 
 }
 
