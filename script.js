@@ -93,7 +93,14 @@ zombies.forEach(zombie=>{
             scoreDisplay.textContent=score;
 
 
-            zombie.classList.remove("active");
+            zombie.classList.add("hit");
+
+            setTimeout(()=>{
+
+                zombie.classList.remove("active");
+                zombie.classList.remove("hit");
+
+                },200);
 
         }
 
