@@ -13,6 +13,7 @@ let time = 30;
 let gameRunning = false;
 
 let timer;
+let zombieTimer;
 
 
 function randomZombie(){
@@ -37,7 +38,7 @@ function randomZombie(){
 
 
 function startGame(){
-
+    startButton.disabled = true;
     score = 0;
     time = 30;
 
@@ -47,9 +48,9 @@ function startGame(){
 
     gameRunning=true;
 
-
-    let zombieTimer =
-    setInterval(randomZombie,800);
+    clearInterval(timer);
+    clearInterval(zombieTimer)
+    zombieTimer = setInterval(randomZombie, 800);
 
 
     timer=setInterval(()=>{
@@ -60,7 +61,9 @@ function startGame(){
 
 
         if(time<=0){
-
+            zombies.forEach(z => {
+            z.classList.remove("active");
+            });
             clearInterval(timer);
             clearInterval(zombieTimer);
 
@@ -72,9 +75,9 @@ function startGame(){
 
         }
 
-
+    
     },1000);
-
+    startButton.disabled = false;
 }
 
 
