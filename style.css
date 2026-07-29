@@ -1,125 +1,119 @@
-body{
+body {
 
-    background:url("images/graveyard.jpg")
-               center center/cover
-               no-repeat fixed;
+    background: url("images/graveyard.jpg")
+                center center / cover
+                no-repeat fixed;
 
-    color:white;
-
-    font-family:Arial,sans-serif;
-
-    text-align:center;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
 
 }
-
 
 h1 {
+
     color: limegreen;
     font-size: 50px;
+
 }
 
-
 button {
+
     padding: 15px 30px;
     font-size: 20px;
     cursor: pointer;
-}
-
-button:hover{
-
-    background:limegreen;
-    color:black;
 
 }
 
-.game-board{
+button:hover {
 
-    width:90%;
-    max-width:600px;
-
-    margin:30px auto;
-
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-
-    gap:20px;
+    background: limegreen;
+    color: black;
 
 }
 
+.game-board {
 
-.hole{
+    width: 90%;
+    max-width: 600px;
 
-    height:170px;
+    margin: 30px auto;
 
-    background:linear-gradient(
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+.hole {
+
+    height: 170px;
+
+    background: linear-gradient(
         to bottom,
         #444 0%,
         #222 40%,
         #000 100%
     );
 
-    border:4px solid #555;
+    border: 4px solid #555;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    overflow:hidden;
+    overflow: hidden;
 
-    position:relative;
+    position: relative;
 
 }
-
 
 .zombie {
 
-    width:100px;
-    height:100px;
+    width: 100px;
+    height: 100px;
 
-    background-image:url("images/zombie.png");
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
+    background-image: url("images/zombie.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 
-    position:absolute;
+    position: absolute;
 
-    bottom:-120px;
+    bottom: -120px;
 
-    left:50%;
+    left: 50%;
 
-    transform:translateX(-50%);
+    transform: translateX(-50%);
 
-    cursor:pointer;
+    cursor: pointer;
 
-    transition:0.2s;
+    transition: 0.2s;
 
 }
-
 
 .zombie.active {
 
-    bottom:15px;
+    bottom: 15px;
 
-    animation:
-    zombiePop 0.3s;
+    animation: zombiePop 0.3s;
 
 }
-
 
 @keyframes zombiePop {
 
     from {
 
         transform:
-        translateX(-50%)
-        scale(0.5);
+            translateX(-50%)
+            scale(0.5);
 
     }
-
 
     to {
 
         transform:
-        translateX(-50%)
-        scale(1);
+            translateX(-50%)
+            scale(1);
 
     }
 
@@ -128,17 +122,17 @@ button:hover{
 .zombie.hit {
 
     transform:
-    translateX(-50%)
-    rotate(45deg)
-    scale(0.8);
+        translateX(-50%)
+        rotate(45deg)
+        scale(0.8);
 
-    opacity:0.5;
+    opacity: 0.5;
 
 }
 
+footer {
 
-.hit {
-
-    background:red;
+    margin-top: 40px;
+    color: #bbb;
 
 }
