@@ -1,11 +1,9 @@
 const zombies = document.querySelectorAll(".zombie");
-const holes = document.querySelectorAll(".hole");
 
 const scoreDisplay = document.getElementById("score");
 const timeDisplay = document.getElementById("time");
 
 const startButton = document.getElementById("start");
-
 
 let score = 0;
 let time = 30;
@@ -15,106 +13,103 @@ let gameRunning = false;
 let timer;
 let zombieTimer;
 
+function randomZombie() {
 
-function randomZombie(){
-
-    if(!gameRunning)
-        return;
-
+    if (!gameRunning) return;
 
     zombies.forEach(z =>
         z.classList.remove("active")
     );
 
-
-    let random =
-    Math.floor(Math.random()*zombies.length);
-
+    let random = Math.floor(Math.random() * zombies.length);
 
     zombies[random].classList.add("active");
-
-
 }
 
+function startGame() {
 
-function startGame(){
     startButton.disabled = true;
+
     score = 0;
     time = 30;
 
     scoreDisplay.textContent = score;
     timeDisplay.textContent = time;
 
-
-    gameRunning=true;
+    gameRunning = true;
 
     clearInterval(timer);
-    clearInterval(zombieTimer)
+    clearInterval(zombieTimer);
+
     zombieTimer = setInterval(randomZombie, 800);
 
-
-    timer=setInterval(()=>{
+    timer = setInterval(() => {
 
         time--;
 
-        timeDisplay.textContent=time;
+        timeDisplay.textContent = time;
 
+        if (time <= 0) {
 
-        if(time<=0){
             zombies.forEach(z => {
-            z.classList.remove("active");
+                z.classList.remove("active");
             });
+
             clearInterval(timer);
             clearInterval(zombieTimer);
 
-            gameRunning=false;
+            gameRunning = false;
 
-            alert(
-              "Game Over! Score: " + score
-            );
+            startButton.disabled = false;
 
+            alert("Game Over! Score: " + score);
         }
 
-    
-    },1000);
-    startButton.disabled = false;
+    }, 1000);
 }
 
+zombies.forEach(zombie => {
 
+    zombie.addEventListener("click", () => {
 
-zombies.forEach(zombie=>{
-
-
-    zombie.addEventListener("click",()=>{
-
-
-        if(gameRunning && zombie.classList.contains("active")){
-
+        if (gameRunning && zombie.classList.contains("active")) {
 
             score++;
 
-            scoreDisplay.textContent=score;
+            scoreDisplay.textContent = score;
 
+            scoreDisplay.animate(
+                [
+                    { transform: "scale(1.4)" },
+                    { transform: "scale(1)" }
+                ],
+                {
+                    duration: 150
+                }
+            );
+
+            if (score > 0 && score % 10 === 0) {
+
+                clearInterval(zombieTimer);
+
+                zombieTimer = setInterval(
+                    randomZombie,
+                    Math.max(250, 800 - score * 10)
+                );
+            }
 
             zombie.classList.add("hit");
 
-            setTimeout(()=>{
+            setTimeout(() => {
 
                 zombie.classList.remove("active");
                 zombie.classList.remove("hit");
 
-                },200);
-
+            }, 200);
         }
-
 
     });
 
-
 });
 
-
-startButton.addEventListener(
-    "click",
-    startGame
-);
+startButton.addEventListener("click", startGame);
