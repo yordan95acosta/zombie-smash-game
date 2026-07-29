@@ -1,0 +1,75 @@
+body {
+    background: #111;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+
+h1 {
+    color: limegreen;
+    font-size: 50px;
+}
+
+
+button {
+    padding: 15px 30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+.game-board {
+
+    width: 600px;
+    margin: 30px auto;
+
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:20px;
+
+}
+
+
+.hole {
+
+    height:150px;
+    background:#4b2e16;
+    border-radius:50%;
+    position:relative;
+    overflow:hidden;
+
+}
+
+
+.zombie {
+
+    width:90px;
+    height:90px;
+
+    background:green;
+
+    border-radius:50%;
+
+    position:absolute;
+
+    bottom:-100px;
+
+    left:50%;
+    transform:translateX(-50%);
+
+}
+
+
+.zombie.active {
+
+    bottom:20px;
+
+}
+
+
+.hit {
+
+    background:red;
+
+}
